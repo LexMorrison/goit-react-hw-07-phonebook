@@ -1,12 +1,12 @@
 import { NamesFilterLabel, NamesFilterInput } from './FilterByName.styled';
-import { switchFilter } from 'redux/contactSlice';
+import { setFilter } from 'redux/FilterSlice';
 import { selectFilter } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 export const Filter = () => {
   const dispatch = useDispatch();
   const value = useSelector(selectFilter);
   const changeFilter = evt => {
-    dispatch(switchFilter(evt.currentTarget.value));
+    dispatch(setFilter(evt.currentTarget.value));
   };
   return (
     <div>

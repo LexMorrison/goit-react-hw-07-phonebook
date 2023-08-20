@@ -1,15 +1,15 @@
 import React from 'react';
 import { ListOfPpl, DeleteButt } from './ContatsList.styled';
+import { deleteContactThunk } from 'redux/ContactAsyncThunk';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectVisibleContacts } from 'redux/selectors';
-import { deleteContact } from 'redux/contactSlice';
 import { Notification } from '../Notification/Notification';
 function ContactsList() {
   const dispatch = useDispatch();
   //получаем видимые контакты которые будут рендерится
   const visibleContacts = useSelector(selectVisibleContacts);
   const onContactsDelete = id => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContactThunk(id));
   };
   return visibleContacts.length > 0 ? (
     <div>
@@ -18,7 +18,7 @@ function ContactsList() {
           return (
             <ListOfPpl key={contact.id}>
               <p>
-                {contact.name}: {contact.number}
+                {contact.name}: {contact.phone}
               </p>
               <DeleteButt
                 type="button"
